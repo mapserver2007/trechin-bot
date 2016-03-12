@@ -11,13 +11,12 @@ module Trechin
 
     def initialize
       @agent = create_agent
-      @company = load_train_company
       @data = {}
     end
 
     def create_agent
       agent = Mechanize.new
-      agent.user_agent_alias = "Windows IE 8"
+      agent.user_agent_alias = CREWLE_USERAGENT
       agent.read_timeout = CRAWLE_TIMEOUT
       agent
     end

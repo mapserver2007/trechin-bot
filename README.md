@@ -1,4 +1,4 @@
-# trechinchan
+# trechin-bot
 電車遅延ちゃん、略してトレチンちゃん。
 
 ## Purpose

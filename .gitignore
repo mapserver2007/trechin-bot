@@ -32,3 +32,5 @@ _$*
 _svn
 sandbox/
 config/mlab.yml
+config/mlab.test.yml
+config/mlab.login.txt

@@ -11,7 +11,7 @@ module Trechin
     def initialize(config = {})
       Logger.name = 'trechin'
       Logger.level = config[:test] ? 1 : 2 # 1=DEBUG, 2=INFO
-      @mongo = Mongo.new("mlab.yml")
+      @mongo = Mongo.new("mlab.test.yml")
     end
 
     def run
@@ -30,14 +30,15 @@ module Trechin
         }
 
         registered_data = @mongo.get
-        unless registered_data.nil? && registered_data.empty?
+        unless registered_data.empty?
           if @mongo.put(save_data, {:_id => registered_data[0]['_id']})
             logger.info("Updated train data.")
           else
             logger.error("Failed to updated new train data.")
           end
         else
-          logger.error("Can not get old train data. because update to new data failed.")
+          @mongo.post(save_data)
+          logger.info("First registered train data.")
         end
       rescue => e
         logger.error(e)
