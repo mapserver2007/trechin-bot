@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-$: << File.dirname(__FILE__) + "/core/lib"
-require 'rankforce'
+$: << File.dirname(__FILE__) + "/lib"
+require 'trechin'
 require 'rspec/core/rake_task'
 require 'yaml'
 
 config_files = [
-  YAML.load_file(File.dirname(__FILE__) + "/core/config/mlab.yml")
+  YAML.load_file(File.dirname(__FILE__) + "/config/mlab.yml")
 ]
 
 config = {}
@@ -16,7 +16,7 @@ end
 task:default => [:spec, :github_push, :heroku_deploy]
 
 RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = 'core/spec/**/*_spec.rb'
+  spec.pattern = 'spec/**/*_spec.rb'
   spec.rspec_opts = ['--format documentation']
 end
 
